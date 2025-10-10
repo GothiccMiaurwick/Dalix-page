@@ -4,6 +4,12 @@
 @theme {
   --breakpoint-vsm: 480px;
   --breakpoint-ssm: 520px;
+  --breakpoint-sm: 640px;
+  --breakpoint-smd: 720px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
   --color-dalix-gray: #e0e0e0;
   --color-bg-dark: #333;
   --font-family-lora: 'Lora', serif;

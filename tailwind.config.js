@@ -10,6 +10,7 @@ module.exports = {
       screens: {
         'vsm': '480px',
         'ssm': '520px',
+        'smd': '720px',
       },
       fontFamily: {
         'lora': ['Lora', 'serif'],
