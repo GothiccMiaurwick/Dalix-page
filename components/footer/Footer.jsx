@@ -3,41 +3,41 @@ import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-gray-300 py-8">
+    <footer className="bg-gray-800 text-gray-300 py-4 vsm:py-6 ssm:py-8">
       <div className="max-w-4xl mx-auto px-4 text-center">
         {/* Company Name */}
-        <h2 className="text-2xl font-serif text-gray-300 mb-6 tracking-wider">
+        <h2 className="text-sm vsm:text-lg ssm:text-2xl font-serif text-gray-300 mb-4 vsm:mb-5 ssm:mb-6 tracking-wider">
           DALIX
         </h2>
         
         {/* Social Media Icons */}
-        <div className="flex justify-center gap-4 mb-6">
-          <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer">
+        <div className="flex justify-center gap-2 vsm:gap-3 ssm:gap-4 mb-4 vsm:mb-5 ssm:mb-6">
+          <div className="w-8 h-8 vsm:w-9 vsm:h-9 ssm:w-10 ssm:h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer">
             <img 
               src="https://img.icons8.com/ios-filled/50/facebook-new.png" 
               alt="Facebook" 
-              className="w-5 h-5"
+              className="w-4 h-4 vsm:w-4.5 vsm:h-4.5 ssm:w-5 ssm:h-5"
             />
           </div>
-          <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer">
+          <div className="w-8 h-8 vsm:w-9 vsm:h-9 ssm:w-10 ssm:h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer">
             <img 
               src="https://img.icons8.com/ios-filled/50/instagram-new.png" 
               alt="Instagram" 
-              className="w-5 h-5"
+              className="w-4 h-4 vsm:w-4.5 vsm:h-4.5 ssm:w-5 ssm:h-5"
             />
           </div>
-          <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer">
+          <div className="w-8 h-8 vsm:w-9 vsm:h-9 ssm:w-10 ssm:h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer">
             <img 
               src="https://img.icons8.com/ios-filled/50/twitter.png" 
               alt="Twitter" 
-              className="w-5 h-5"
+              className="w-4 h-4 vsm:w-4.5 vsm:h-4.5 ssm:w-5 ssm:h-5"
             />
           </div>
-          <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer">
+          <div className="w-8 h-8 vsm:w-9 vsm:h-9 ssm:w-10 ssm:h-10 bg-gray-300 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer">
             <img 
               src="https://img.icons8.com/ios-filled/50/pinterest.png" 
               alt="Pinterest" 
-              className="w-5 h-5"
+              className="w-4 h-4 vsm:w-4.5 vsm:h-4.5 ssm:w-5 ssm:h-5"
             />
           </div>
         </div>

@@ -18,7 +18,7 @@ export default function CarouselComponent() {
           align: "start",
           loop: true,
         }}
-        className="sm:w-2/3 md:w-1/3 lg:w-1/4"
+        className="ssm:w-2/3 sm:w-2/3 md:w-1/3 lg:w-1/4"
       >
         <CarouselContent>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (

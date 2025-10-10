@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@theme {
+  --breakpoint-vsm: 480px;
+  --breakpoint-ssm: 520px;
+  --color-dalix-gray: #e0e0e0;
+  --color-bg-dark: #333;
+  --font-family-lora: 'Lora', serif;
+  --font-family-courier: 'Courier New', monospace;
+}
+
 /* Los iconos de Flaticon Uicons se importan en layout.js */
 
 html,
