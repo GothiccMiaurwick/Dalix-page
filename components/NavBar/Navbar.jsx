@@ -121,7 +121,7 @@ const NavbarComponent = () => {
           {/* Botón de búsqueda */}
           <a
             href="#"
-            className="flex items-center justify-center w-[50px] h-[50px] rounded-[12%] bg-transparent relative top-2"
+            className="flex items-center justify-center xs:w-[30px] xs:h-[30px] vsm:w-[50px] vsm:h-[50px] rounded-[12%] bg-transparent relative top-2"
             onClick={toggleSearch}
             aria-label="Abrir búsqueda de productos">
             <i
@@ -138,7 +138,7 @@ const NavbarComponent = () => {
               alt="Logo de la marca DALIX - Empresa de ropa y prendas de vestir"
               width={100}
               height={100}
-              className="h-[60px] w-auto transition-opacity hover:opacity-80"
+              className="xs:h-[30px] xs:w-[70px] vsm:h-[60px] vsm:w-auto transition-opacity hover:opacity-80"
             />
           </Link>
 
@@ -146,7 +146,7 @@ const NavbarComponent = () => {
           <a
             href="#"
             id="menu-toggle"
-            className="flex items-center justify-center w-[50px] h-[50px] rounded-[12%] bg-transparent relative top-2"
+            className="flex items-center justify-center xs:w-[30px] xs:h-[30px] vsm:w-[50px] vsm:h-[50px] rounded-[12%] bg-transparent relative top-2"
             onClick={toggleMobileMenu}
             aria-label="Abrir menú de navegación">
             <i

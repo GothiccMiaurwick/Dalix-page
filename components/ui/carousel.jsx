@@ -132,7 +132,7 @@ function CarouselPrevious({ className, variant = "outline", size = "icon", ...pr
       className={cn(
         "absolute rounded-full",
         orientation === "horizontal"
-          ? "top-1/2 -left-16 -translate-y-1/2 vsm:w-13 vsm:h-13 ssm:w-13 ssm:h-13 w-16 h-16 flex items-center justify-center"
+          ? "top-1/2 -left-16 -translate-y-1/2  xs:w-5 xs:h-5 vsm:w-13 vsm:h-13 ssm:w-13 ssm:h-13 smd:w-13 smd:h-13 w-16 h-16 flex items-center justify-center"
           : "-top-16 left-1/2 -translate-x-1/2 rotate-90  ssm:w-13 ssm:h-13 w-16 h-16 flex items-center justify-center",
         className
       )}
@@ -156,7 +156,7 @@ function CarouselNext({ className, variant = "outline", size = "icon", ...props 
       className={cn(
         "absolute rounded-full",
         orientation === "horizontal"
-          ? "top-1/2 -right-16 -translate-y-1/2 vsm:w-13 vsm:h-13 ssm:w-13 ssm:h-13 smd:w-13 smd:h-13 w-16 h-16 flex items-center justify-center"
+          ? "top-1/2 -right-16 -translate-y-1/2  xs:w-9 xs:h-9 vsm:w-13 vsm:h-13 ssm:w-13 ssm:h-13 smd:w-13 smd:h-13 w-16 h-16 flex items-center justify-center"
           : "-bottom-16 left-1/2 -translate-x-1/2 rotate-90 ssm:w-13 ssm:h-13 w-16 h-16 flex items-center justify-center",
         className
       )}
