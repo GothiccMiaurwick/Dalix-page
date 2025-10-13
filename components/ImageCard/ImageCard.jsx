@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function ImageCard() {
   return (
-    <div className="relative w-full h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden">
+    <div className="relative w-full h-screen min-h-[500px] overflow-hidden">
       <Image 
         src="/img/RopaDalix11.jpg" 
         alt="Dalix Fashion Hero" 
