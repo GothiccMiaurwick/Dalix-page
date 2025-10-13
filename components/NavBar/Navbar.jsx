@@ -138,7 +138,7 @@ const NavbarComponent = () => {
               alt="Logo de la marca DALIX - Empresa de ropa y prendas de vestir"
               width={100}
               height={100}
-              className="xs:h-[30px] xs:w-[70px] vsm:h-[60px] vsm:w-auto transition-opacity hover:opacity-80"
+              className="xs:h-[30px] xs:w-[70px] vsm:h-[40px]  vsm:w-auto ssm:w-[100px] ssm:h-[50px] transition-opacity hover:opacity-80"
             />
           </Link>
 

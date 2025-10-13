@@ -3,7 +3,7 @@
 
 @theme {
   --breakpoint-xs: 320px;
-  --breakpoint-vsm: 420px;
+  --breakpoint-vsm: 400px;
   --breakpoint-ssm: 520px;
   --breakpoint-sm: 640px;
   --breakpoint-smd: 720px;

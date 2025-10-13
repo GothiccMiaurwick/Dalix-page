@@ -18,7 +18,7 @@ export default function CarouselComponent() {
           align: "start",
           loop: true,
         }}
-        className="xs:w-1/2 vsm:w-2/3 ssm:w-2/3 sm:w-2/4 smd:w-2/3 md:w-1/3 lg:w-1/4"
+        className="xs:w-1/2 vsm:w-3/3 ssm:w-3/3 sm:w-3/2 smd:w-3/3 md:w-1/3 lg:w-1/4"
       >
         <CarouselContent>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
@@ -42,8 +42,8 @@ export default function CarouselComponent() {
         <CarouselNext />
       </Carousel>
 
-        <div className="flex justify-center items-center uppercase">
-          <h1 className=" xs:text-s vsm:text-lg ssm:text-xl smd:text-2xl font-bold p-3">NUESTRA NUEVA COLECCION.</h1>
+        <div className="flex justify-center items-center uppercase w-full">
+          <h1 className=" xs:text-sm vsm:text-[16px] ssm:text-xl smd:text-2xl sm:text-lg font-bold p-3 justify-center">NUESTRA NUEVA COLECCION.</h1>
         </div>
     </div>
   );
