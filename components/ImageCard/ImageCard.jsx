@@ -19,7 +19,7 @@ export default function ImageCard() {
       {/* Text overlay */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 sm:px-8">
         {/* Main title */}
-        <h1 className="text-white font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-wide">
+        <h1 className="text-white font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-wide italic">
           Dalix
         </h1>
         
