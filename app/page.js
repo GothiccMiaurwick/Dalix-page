@@ -15,7 +15,7 @@ export default function Home() {
           <Carousel />
         </div>
         <div className="flex justify-center m-6">
-          <Button text="Catalogo" />
+          <Button text="Catalogo" href="/catalogo" />
         </div>
         <div>
           <Footer />

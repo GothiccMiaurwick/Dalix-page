@@ -1,5 +1,7 @@
 import "./globals.css";
 import Navbar from "../components/NavBar/Navbar.jsx";
+import ControlsBar from "../components/ControlsBar/ControlsBar.jsx";
+import Footer from "../components/footer/Footer";
 
 export const metadata = {
   title: "Dalix",
@@ -16,7 +18,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased">
         <Navbar />
+        <ControlsBar />
         {children}
+        <Footer />
       </body>
     </html>
   );
