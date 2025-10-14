@@ -17,9 +17,9 @@ export default function ControlsBar() {
     window.dispatchEvent(new CustomEvent('viewChanged', { detail: { view } }));
   };
 
-  // Función para verificar si es móvil
+  // Función para verificar si es móvil (hasta 768px)
   const checkIsMobile = () => {
-    return window.innerWidth <= 480;
+    return window.innerWidth < 768;
   };
 
   // Efecto para manejar el estado móvil y cargar la vista guardada
@@ -102,7 +102,7 @@ export default function ControlsBar() {
             </button>
             
             <button
-              className={`w-8 h-8 bg-transparent flex items-center justify-center hover:opacity-80 transition-all duration-200 cursor-pointer sm:hidden ${
+              className={`w-8 h-8 bg-transparent flex items-center justify-center hover:opacity-80 transition-all duration-200 cursor-pointer md:flex hidden ${
                 activeView === "grid-3" ? "controls-bar__view-btn--active opacity-100" : "opacity-70 hover:opacity-90"
               }`}
               onClick={() => handleViewChange("grid-3")}

@@ -9,20 +9,22 @@ export default function ProductCard({
   href = "/buys"
 }) {
   return (
-    <div className="bg-transparent rounded-none shadow-none flex flex-col items-center py-8 px-6 transition-transform duration-200 hover:-translate-y-0.5">
-      <Link href={href}>
-        <Image
-          src={image}
-          alt={alt}
-          width={350}
-          height={350}
-          className="w-[350px] h-[350px] object-cover object-center bg-gray-300 rounded-sm mb-3 block"
-        />
+    <div className="catalog__card w-full bg-transparent rounded-none shadow-none flex flex-col items-stretch p-0 m-0 transition-transform duration-200 hover:-translate-y-0.5">
+      <Link href={href} className="block w-full">
+        <div className="w-full aspect-square bg-gray-300 rounded-sm mb-2 overflow-hidden">
+          <Image
+            src={image}
+            alt={alt}
+            width={500}
+            height={500}
+            className="w-full h-full object-cover object-center block"
+          />
+        </div>
       </Link>
-      <h2 className="text-gray-600 font-['Courier_New'] text-sm font-light mt-2 mb-1 text-center break-words whitespace-normal m-0">
+      <h2 className="catalog__name text-gray-600 font-['Courier_New'] text-sm font-light mt-1 mb-1 text-center break-words whitespace-normal m-0 w-full">
         {title}
       </h2>
-      <p className="text-gray-500 font-['Courier_New'] text-xs font-light m-0 text-center transition-colors duration-300 ease-in-out hover:text-green-800">
+      <p className="catalog__price text-gray-500 font-['Courier_New'] text-xs font-light m-0 text-center transition-colors duration-300 ease-in-out hover:text-green-800 w-full">
         {price}
       </p>
     </div>

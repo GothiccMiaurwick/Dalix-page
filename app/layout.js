@@ -18,7 +18,6 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased">
         <Navbar />
-        <ControlsBar />
         {children}
         <Footer />
       </body>

@@ -17,9 +17,6 @@ export default function Home() {
         <div className="flex justify-center m-6">
           <Button text="Catalogo" href="/catalogo" />
         </div>
-        <div>
-          <Footer />
-        </div>
       </main>
     </div>
   );

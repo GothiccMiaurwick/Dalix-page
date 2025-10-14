@@ -1,6 +1,8 @@
 "use client";
 
+import { Divide } from "lucide-react";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import ControlsBar from "../../components/ControlsBar/ControlsBar";
 import { useState, useEffect } from "react";
 
 export default function Catalogo() {
@@ -54,44 +56,29 @@ export default function Catalogo() {
 
   // Función para obtener las clases del grid basadas en la vista actual
   const getGridClasses = () => {
-    const baseClasses = "grid gap-12";
+    const baseClasses = "grid";
     
     switch (currentView) {
       case "grid-2":
-        return `${baseClasses} grid-cols-2 gap-12`;
+        return `${baseClasses} grid-cols-2 gap-0`;
       case "grid-3":
-        return `${baseClasses} grid-cols-3 gap-8`;
+        return `${baseClasses} grid-cols-3 gap-0`;
       case "list":
-        return `${baseClasses} grid-cols-1 gap-8`;
+        return `${baseClasses} grid-cols-1 gap-1`;
       default:
-        return `${baseClasses} grid-cols-[repeat(auto-fit,minmax(300px,1fr))]`;
+        return `${baseClasses} grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-0`;
     }
   };
 
   // Función para obtener las clases de la imagen basadas en la vista actual
   const getImageClasses = (view) => {
-    switch (view) {
-      case "grid-2":
-        return "w-[320px] h-[320px] object-cover object-center bg-gray-300 rounded-sm mb-3 block";
-      case "grid-3":
-        return "w-[250px] h-[250px] object-cover object-center bg-gray-300 rounded-sm mb-3 block";
-      case "list":
-        return "w-[450px] h-[450px] object-cover object-center bg-gray-300 rounded-sm mb-4 block";
-      default:
-        return "w-[350px] h-[350px] object-cover object-center bg-gray-300 rounded-sm mb-3 block";
-    }
+    return "w-full aspect-square object-cover object-center bg-gray-300 rounded-sm mb-4 block";
   };
 
   // Función para obtener las clases de la card basadas en la vista actual
   const getCardClasses = (view) => {
     const baseClasses = "bg-transparent rounded-none shadow-none flex flex-col items-center transition-transform duration-200 hover:-translate-y-0.5";
-    
-    switch (view) {
-      case "list":
-        return `${baseClasses} py-12 px-8 max-w-[500px] mx-auto text-center`;
-      default:
-        return `${baseClasses} py-8 px-6`;
-    }
+    return `${baseClasses} p-5 md:p-10`;
   };
 
   // Escuchar cambios de vista desde ControlsBar
@@ -112,8 +99,10 @@ export default function Catalogo() {
   }, []);
 
   return (
-    <div className="max-w-6xl bg-gray-50 rounded-xl shadow-[0_2px_8px_rgba(60,60,60,0.04)]">
-      <h1 className="text-center text-gray-700 font-['Lora'] text-3xl mb-8">Catálogo</h1>
+   <div>
+            <ControlsBar />
+
+     <div className="max-w-6xl bg-gray-50 rounded-xl shadow-[0_2px_8px_rgba(60,60,60,0.04)]">
       
       {/* Product Grid */}
       <div className={`catalog__grid ${getGridClasses()}`} id="catalog-grid">
@@ -136,5 +125,6 @@ export default function Catalogo() {
         ))}
       </div>
     </div>
+   </div>
   );
 }
