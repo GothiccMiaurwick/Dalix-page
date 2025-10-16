@@ -102,7 +102,8 @@ export default function ControlsBar() {
             </button>
             
             <button
-              className={`w-8 h-8 bg-transparent flex items-center justify-center hover:opacity-80 transition-all duration-200 cursor-pointer md:flex hidden ${
+            // flex 
+              className={`w-8 h-8 bg-transparent  items-center justify-center hover:opacity-80 transition-all duration-200 cursor-pointer md:flex hidden ${
                 activeView === "grid-3" ? "controls-bar__view-btn--active opacity-100" : "opacity-70 hover:opacity-90"
               }`}
               onClick={() => handleViewChange("grid-3")}
