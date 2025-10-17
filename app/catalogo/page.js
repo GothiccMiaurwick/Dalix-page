@@ -1,58 +1,13 @@
 "use client";
-
-import { Divide } from "lucide-react";
-import ProductCard from "../../components/ProductCard/ProductCard";
 import ControlsBar from "../../components/ControlsBar/ControlsBar";
 import { useState, useEffect } from "react";
+import { products } from "@/data/products";
+import Link from "next/link";
+
+
 
 export default function Catalogo() {
   const [currentView, setCurrentView] = useState("grid-2");
-  
-  // Datos de productos de ejemplo
-  const products = [
-    {
-      id: 1,
-      title: "CAMISETA DALIX ORIGINAL",
-      price: "$45,000 COP",
-      image: "/img/RopaDalix1.jpg",
-      alt: "CAMISETA DALIX ORIGINAL - Prenda de vestir de la marca DALIX disponible en catálogo"
-    },
-    {
-      id: 2,
-      title: "HOODIE DALIX PREMIUM",
-      price: "$95,000 COP",
-      image: "/img/RopaDalix2.jpg",
-      alt: "HOODIE DALIX PREMIUM - Prenda de vestir de la marca DALIX disponible en catálogo"
-    },
-    {
-      id: 3,
-      title: "CAMISETA DALIX ANIME",
-      price: "$42,000 COP",
-      image: "/img/RopaDalix3.jpg",
-      alt: "CAMISETA DALIX ANIME - Prenda de vestir de la marca DALIX disponible en catálogo"
-    },
-    {
-      id: 4,
-      title: "SUDADERA DALIX LIMITED",
-      price: "$78,000 COP",
-      image: "/img/RopaDalix4.jpg",
-      alt: "SUDADERA DALIX LIMITED - Prenda de vestir de la marca DALIX disponible en catálogo"
-    },
-    {
-      id: 5,
-      title: "CAMISETA DALIX VINTAGE",
-      price: "$38,000 COP",
-      image: "/img/RopaDalix5.jpg",
-      alt: "CAMISETA DALIX VINTAGE - Prenda de vestir de la marca DALIX disponible en catálogo"
-    },
-    {
-      id: 6,
-      title: "HOODIE DALIX SPORT",
-      price: "$88,000 COP",
-      image: "/img/RopaDalix6.jpg",
-      alt: "HOODIE DALIX SPORT - Prenda de vestir de la marca DALIX disponible en catálogo"
-    }
-  ];
 
   // Función para obtener las clases del grid basadas en la vista actual
   const getGridClasses = () => {
@@ -108,13 +63,13 @@ export default function Catalogo() {
       <div className={`catalog__grid ${getGridClasses()}`} id="catalog-grid">
         {products.map((product) => (
           <div key={product.id} className={`catalog__card ${getCardClasses(currentView)}`}>
-            <a href="/buys">
+            <Link href={`/catalogo/${product.slug}`} >
               <img
                 src={product.image}
                 alt={product.alt}
                 className={`catalog__image ${getImageClasses(currentView)}`}
               />
-            </a>
+            </Link > 
             <h2 className="catalog__name text-gray-600 font-['Courier_New'] text-sm font-light mt-2 mb-1 text-center break-words whitespace-normal m-0">
               {product.title}
             </h2>

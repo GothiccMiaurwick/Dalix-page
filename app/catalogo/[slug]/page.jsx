@@ -2,38 +2,27 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-
-// Datos simulados de un producto. En una aplicación real, esto vendría de una API.
-const productData = {
-  id: 1,
-  name: "Camiseta DALIX Original",
-  price: "45.000 COP",
-  description: "Camiseta de alta calidad con diseño exclusivo DALIX. Material suave y cómodo, disponible en múltiples tallas y colores.",
-  images: [
-    "/img/RopaDalix1.jpg",
-    "/img/RopaDalix2.jpg",
-    "/img/RopaDalix3.jpg",
-    "/img/RopaDalix4.jpg",
-    "/img/RopaDalix5.jpg",
-  ],
-  sizes: ["S", "M", "L", "XL"],
-};
+import { getProductBySlug } from "@/data/products";
 
 export default function ProductPage({ params }) {
-  const { productId } = params;
+  const { slug } = params; // ← Capturamos el slug correctamente
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState("");
   const [activeSize, setActiveSize] = useState("M");
 
-  // En una aplicación real, aquí harías una llamada a tu API para obtener los datos del producto
-  // usando el productId. Por ahora, usamos los datos simulados.
+  // Buscamos el producto usando el slug
   useEffect(() => {
-    setProduct(productData);
-    setMainImage(productData.images[0]);
-  }, [productId]);
+    const foundProduct = getProductBySlug(slug); // ← Usamos la función que importamos
+    
+    if (foundProduct) {
+      setProduct(foundProduct);
+      setMainImage(foundProduct.images[0]);
+    }
+  }, [slug]);
 
+  // Mostrar mensaje de carga mientras se busca el producto
   if (!product) {
-    return <div>Cargando producto...</div>;
+    return <div className="p-8">Cargando producto...</div>;
   }
 
   const handleThumbnailClick = (image) => {
@@ -52,7 +41,7 @@ export default function ProductPage({ params }) {
           <div className="w-full h-auto aspect-square relative overflow-hidden rounded-lg shadow-md">
             <Image
               src={mainImage}
-              alt={product.name}
+              alt={product.title}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -84,9 +73,9 @@ export default function ProductPage({ params }) {
         {/* Columna de Información del Producto */}
         <div className="flex flex-col gap-4 pt-4">
           <h1 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Lora', serif" }}>
-            {product.name}
+            {product.title}
           </h1>
-          <p className="text-2xl text-gray-800">{product.price}</p>
+          <p className="text-2xl text-gray-800">{product.formattedPrice}</p>
           <p className="text-gray-600 leading-relaxed">
             {product.description}
           </p>
@@ -141,7 +130,6 @@ export default function ProductPage({ params }) {
                   <td className="px-4 py-2 border border-gray-200">75</td>
                   <td className="px-4 py-2 border border-gray-200">81</td>
                 </tr>
-                {/* Agrega el resto de las filas aquí si es necesario */}
               </tbody>
             </table>
           </div>

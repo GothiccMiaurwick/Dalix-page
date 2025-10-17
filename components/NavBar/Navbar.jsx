@@ -119,7 +119,7 @@ const NavbarComponent = () => {
       <header className="w-full bg-[#e0e0e0] shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-4 relative">
           {/* Botón de búsqueda */}
-          <a
+          <Link
             href="#"
             className="flex items-center justify-center xs:w-[30px] xs:h-[30px] vsm:w-[50px] vsm:h-[50px] rounded-[12%] bg-transparent relative top-2"
             onClick={toggleSearch}
@@ -127,23 +127,26 @@ const NavbarComponent = () => {
             <i
               className="fi fi-rs-search text-3xl text-gray-600 hover:text-gray-800 transition-colors"
               aria-hidden="true"></i>
-          </a>
+          </ Link>
 
           {/* Logo */}
           <Link
             href="/"
             className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center p-2 rounded-lg transition-all hover:bg-black/5">
-            <Image
-              src="/img/logo.png"
-              alt="Logo de la marca DALIX - Empresa de ropa y prendas de vestir"
-              width={100}
-              height={100}
-              className="xs:h-[30px] xs:w-[70px] vsm:h-[40px]  vsm:w-auto ssm:w-[100px] ssm:h-[50px] transition-opacity hover:opacity-80"
-            />
+            <div className="relative w-[100px] h-[100px] xs:w-[70px] xs:h-[70px] ssm:w-[100px] ssm:h-[100px]">
+              <Image
+                src="/img/logo.png"
+                alt="Logo de la marca DALIX - Empresa de ropa y prendas de vestir"
+                fill
+                sizes="(max-width: 480px) 70px, 100px"
+                style={{ objectFit: "contain" }}
+                className="transition-opacity hover:opacity-80"
+              />
+            </div>
           </Link>
 
           {/* Botón de menú */}
-          <a
+          <Link
             href="#"
             id="menu-toggle"
             className="flex items-center justify-center xs:w-[30px] xs:h-[30px] vsm:w-[50px] vsm:h-[50px] rounded-[12%] bg-transparent relative top-2"
@@ -152,7 +155,7 @@ const NavbarComponent = () => {
             <i
               className="fi fi-sr-menu-burger text-3xl text-gray-600 hover:text-gray-800 transition-colors"
               aria-hidden="true"></i>
-          </a>
+          </Link>
         </div>
       </header>
 
