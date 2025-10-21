@@ -3,12 +3,13 @@
 import ControlsBar from "../../components/ControlsBar/ControlsBar";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Catalogo() {
   const [currentView, setCurrentView] = useState("grid-2");
-  const [products, setProducts] = useState([]); // ← Estado para productos
-  const [loading, setLoading] = useState(true); // ← Estado para loading
-  const [error, setError] = useState(null); // ← Estado para errores
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetch de productos desde la API
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function Catalogo() {
     }
 
     fetchProducts();
-  }, []); // ← Solo se ejecuta una vez al montar
+  }, []);
 
   // Escuchar cambios de vista desde ControlsBar
   useEffect(() => {
@@ -50,7 +51,15 @@ export default function Catalogo() {
     };
   }, []);
 
-  // Función para obtener las clases del grid basadas en la vista actual
+  // Función para limpiar la ruta de imagen
+  const cleanImagePath = (path) => {
+    if (!path) return "/img/placeholder.jpg";
+    // Eliminar espacios y asegurar que comience con /
+    return path.replace(/\s+/g, "").startsWith("/")
+      ? path.replace(/\s+/g, "")
+      : `/${path.replace(/\s+/g, "")}`;
+  };
+
   const getGridClasses = () => {
     const baseClasses = "grid";
 
@@ -66,19 +75,16 @@ export default function Catalogo() {
     }
   };
 
-  // Función para obtener las clases de la imagen basadas en la vista actual
   const getImageClasses = (view) => {
     return "w-full aspect-square object-cover object-center bg-gray-300 rounded-sm mb-4 block";
   };
 
-  // Función para obtener las clases de la card basadas en la vista actual
   const getCardClasses = (view) => {
     const baseClasses =
       "bg-transparent rounded-none shadow-none flex flex-col items-center transition-transform duration-200 hover:-translate-y-0.5";
     return `${baseClasses} p-5 md:p-10`;
   };
 
-  // Mostrar mensaje de carga
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -87,7 +93,6 @@ export default function Catalogo() {
     );
   }
 
-  // Mostrar error si hay
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -101,7 +106,6 @@ export default function Catalogo() {
       <ControlsBar />
 
       <div className="max-w-6xl bg-gray-50 rounded-xl shadow-[0_2px_8px_rgba(60,60,60,0.04)]">
-        {/* Product Grid */}
         <div className={`catalog__grid ${getGridClasses()}`} id="catalog-grid">
           {products.map((product) => (
             <div
@@ -109,10 +113,14 @@ export default function Catalogo() {
               className={`catalog__card ${getCardClasses(currentView)}`}
             >
               <Link href={`/catalogo/${product.slug}`}>
-                <img
-                  src={product.image}
+                <Image
+                  src={cleanImagePath(product.image)}
                   alt={product.title}
+                  width={400}
+                  height={400}
                   className={`catalog__image ${getImageClasses(currentView)}`}
+                  priority={false}
+                  unoptimized={false}
                 />
               </Link>
               <h2 className="catalog__name text-gray-600 font-['Courier_New'] text-sm font-light mt-2 mb-1 text-center break-words whitespace-normal m-0">
