@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "../components/NavBar/Navbar.jsx";
 import Footer from "../components/footer/Footer";
+import SessionProvider from "../components/SessionProvider";
 
 export const metadata = {
   title: "Dalix",
@@ -23,11 +24,15 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
         />
+        <title>Dalix</title>
+        <meta name="description" content="Dalix Application" />
       </head>
       <body className="antialiased">
-        <Navbar />
-        {children}
-        <Footer />
+        <SessionProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );

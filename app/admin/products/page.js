@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { generateSlug } from "@/lib/utils";
+import { signOut, useSession } from "next-auth/react";
 
 function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
   const [title, setTitle] = useState("");
@@ -259,10 +260,11 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
 }
 
 export default function AdminProductsPage() {
+  const { data: session } = useSession();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingProduct, setEditingProduct] = useState(null);
-  const [filterFeatured, setFilterFeatured] = useState("all"); // all, featured, not-featured
+  const [filterFeatured, setFilterFeatured] = useState("all");
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -284,12 +286,10 @@ export default function AdminProductsPage() {
 
   const handleFormSubmit = (resultProduct) => {
     if (editingProduct) {
-      // Update
       setProducts(
         products.map((p) => (p.id === resultProduct.id ? resultProduct : p)),
       );
     } else {
-      // Create
       setProducts((prevProducts) => [resultProduct, ...prevProducts]);
     }
     setEditingProduct(null);
@@ -346,6 +346,12 @@ export default function AdminProductsPage() {
     }
   };
 
+  const handleLogout = async () => {
+    if (window.confirm("¿Estás seguro de que quieres cerrar sesión?")) {
+      await signOut({ callbackUrl: "/" });
+    }
+  };
+
   const filteredProducts = products.filter((product) => {
     if (filterFeatured === "featured") return product.is_featured;
     if (filterFeatured === "not-featured") return !product.is_featured;
@@ -360,7 +366,24 @@ export default function AdminProductsPage() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Administrar Productos</h1>
+      {/* Header con info de usuario y logout */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Administrar Productos</h1>
+        <div className="flex items-center gap-4">
+          {session?.user && (
+            <div className="text-sm text-gray-600">
+              <span className="font-medium">Usuario:</span> {session.user.name}
+            </div>
+          )}
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+          >
+            <i className="fi fi-rs-sign-out-alt"></i>
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
