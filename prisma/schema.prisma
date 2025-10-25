@@ -18,7 +18,22 @@ model Product {
   description     String?
   sizes           Json?
   category        String?
+  is_featured     Boolean? @default(false)
+  collection      String?  // Nueva temporada, Primavera 2025, etc.
   created_at      DateTime @default(now())
 
   @@map("products")
+}
+
+model Collection {
+  id              Int      @id @default(autoincrement())
+  title           String
+  slug            String   @unique
+  description     String?
+  banner_image    String?
+  season          String?  // "Primavera 2025", "Verano 2025", etc.
+  is_active       Boolean  @default(true)
+  created_at      DateTime @default(now())
+
+  @@map("collections")
 }

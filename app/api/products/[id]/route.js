@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { generateSlug } from "@/lib/utils"; // Importar la función
+import { generateSlug } from "@/lib/utils";
 
 // PUT /api/products/[id] - Actualizar producto
 export async function PUT(request, { params }) {
@@ -15,7 +15,7 @@ export async function PUT(request, { params }) {
       where: { id: parseInt(id) },
       data: {
         title: body.title,
-        slug: slug, // Usar el slug generado/limpiado
+        slug: slug,
         price: parseInt(body.price),
         formatted_price: body.formatted_price,
         image: body.image,
@@ -23,6 +23,8 @@ export async function PUT(request, { params }) {
         description: body.description,
         sizes: body.sizes,
         category: body.category,
+        is_featured: body.is_featured !== undefined ? body.is_featured : false,
+        collection: body.collection || null,
       },
     });
 
