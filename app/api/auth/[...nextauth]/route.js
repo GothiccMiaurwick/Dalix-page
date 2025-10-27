@@ -10,12 +10,10 @@ const authOptions = {
         password: { label: "Contraseña", type: "password" },
       },
       async authorize(credentials) {
-        // Verificar credenciales contra variables de entorno
         if (
           credentials?.username === process.env.ADMIN_USERNAME &&
           credentials?.password === process.env.ADMIN_PASSWORD
         ) {
-          // Usuario autenticado correctamente
           return {
             id: "1",
             name: "Admin",
@@ -23,14 +21,12 @@ const authOptions = {
             role: "admin",
           };
         }
-
-        // Credenciales incorrectas
         return null;
       },
     }),
   ],
   pages: {
-    signIn: "/auth/signin", // Página de login personalizada
+    signIn: "/auth/signin",
   },
   callbacks: {
     async jwt({ token, user }) {
