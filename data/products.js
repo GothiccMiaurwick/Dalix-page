@@ -18,7 +18,7 @@ export const products = [
     ],
     description:
       "Camiseta de alta calidad con diseño exclusivo DALIX. Material suave y cómodo, disponible en múltiples sizes.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     category: "camisetas",
   },
   {
@@ -35,7 +35,7 @@ export const products = [
     ],
     description:
       "Hoodie premium con diseño urbano y materiales de primera calidad. Perfecto para cualquier ocasión.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     category: "hoodies",
   },
   {
@@ -52,7 +52,7 @@ export const products = [
     ],
     description:
       "Diseño inspirado en la cultura anime con estampados únicos y vibrantes. Edición limitada.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     category: "camisetas",
   },
   {
@@ -69,7 +69,7 @@ export const products = [
     ],
     description:
       "Sudadera de edición limitada con diseño exclusivo. Comodidad y estilo en una sola prenda.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     category: "sudaderas",
   },
   {
@@ -86,7 +86,7 @@ export const products = [
     ],
     description:
       "Estilo vintage con un toque moderno. Diseño retro que nunca pasa de moda.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     category: "camisetas",
   },
   {
@@ -103,7 +103,7 @@ export const products = [
     ],
     description:
       "Hoodie deportivo diseñado para el máximo confort durante tus actividades. Tecnología textil avanzada.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     category: "hoodies",
   },
 ];
