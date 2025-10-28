@@ -65,8 +65,7 @@ export default function CollectionPage() {
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-          >
+            className="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
             Intentar de nuevo
           </button>
         </div>
@@ -101,7 +100,7 @@ export default function CollectionPage() {
           </p>
         </div>
 
-        {/* Grid */}
+        {/* Grid - ALTURA UNIFORME */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {products.map((product, index) => (
             <Link
@@ -110,11 +109,11 @@ export default function CollectionPage() {
               style={{
                 animation: `slideInUp 0.4s ease-out ${index * 0.05}s both`,
               }}
-              className="group"
-            >
-              <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
-                {/* Image */}
-                <div className="relative aspect-square overflow-hidden bg-gray-100">
+              className="group h-full">
+              {/* Tarjeta con altura completa y flex */}
+              <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2 h-full flex flex-col">
+                {/* Image Container - Altura fija */}
+                <div className="relative aspect-square overflow-hidden bg-gray-100 flex-shrink-0">
                   <Image
                     src={cleanImagePath(product.image)}
                     alt={product.title}
@@ -132,19 +131,25 @@ export default function CollectionPage() {
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-3 sm:p-4 md:p-5">
-                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 line-clamp-2 group-hover:text-gray-900 transition-colors">
+                {/* Content - Flex para distribuir espacio */}
+                <div className="p-3 sm:p-4 md:p-5 flex flex-col flex-1">
+                  {/* Título con altura fija de 2 líneas */}
+                  <h3
+                    className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 group-hover:text-gray-900 transition-colors overflow-hidden flex-shrink-0"
+                    style={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      minHeight: "2.5em", // Reserva espacio para 2 líneas
+                      lineHeight: "1.25em",
+                    }}>
                     {product.title}
                   </h3>
-                  <p className="text-base sm:text-lg md:text-xl font-bold text-gray-900">
+
+                  {/* Precio */}
+                  <p className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 flex-shrink-0">
                     {product.formatted_price}
                   </p>
-
-                  {/* CTA Button */}
-                  <button className="mt-3 sm:mt-4 w-full bg-gray-800 text-white py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-gray-900">
-                    Ver Detalles
-                  </button>
                 </div>
               </div>
             </Link>
@@ -174,8 +179,7 @@ export default function CollectionPage() {
             href="https://wa.me/57800000000"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-semibold text-base sm:text-lg rounded-lg hover:bg-[#128C7E] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-          >
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-semibold text-base sm:text-lg rounded-lg hover:bg-[#128C7E] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
             <i className="fi fi-brands-whatsapp text-2xl"></i>
             CONTACTAR POR WHATSAPP
           </a>

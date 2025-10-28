@@ -48,6 +48,11 @@ export async function POST(request) {
     // Generar el slug a partir del título
     const slug = generateSlug(body.slug || body.title);
 
+    // Crear array de imágenes (incluye todas las variantes)
+    const imagesArray = [body.image];
+    if (body.image2) imagesArray.push(body.image2);
+    if (body.image3) imagesArray.push(body.image3);
+
     // Crear producto en la DB
     const newProduct = await prisma.product.create({
       data: {
@@ -58,10 +63,14 @@ export async function POST(request) {
           body.formatted_price ||
           `$${parseInt(body.price).toLocaleString("es-CO")} COP`,
         image: body.image,
-        images: body.images || [body.image],
+        image2: body.image2 || null,
+        image3: body.image3 || null,
+        images: imagesArray,
         description: body.description || "",
-        sizes: body.sizes || ["S", "M", "L", "XL"],
+        sizes: body.sizes || ["S", "M", "L"],
         category: body.category || "general",
+        is_featured: body.is_featured || false,
+        collection: body.collection || null,
       },
     });
 

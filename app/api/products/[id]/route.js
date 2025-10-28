@@ -11,17 +11,24 @@ export async function PUT(request, { params }) {
     // Generar el slug a partir del título si viene, si no, usar el slug que llega
     const slug = generateSlug(body.slug || body.title);
 
+    // Crear array de imágenes actualizado
+    const imagesArray = [body.image];
+    if (body.image2) imagesArray.push(body.image2);
+    if (body.image3) imagesArray.push(body.image3);
+
     const updatedProduct = await prisma.product.update({
       where: { id: parseInt(id) },
       data: {
         title: body.title,
         slug: slug,
         price: parseInt(body.price),
-        formatted_price: body.formatted_price,
+        formatted_price: body.formatted_price || `$${parseInt(body.price).toLocaleString("es-CO")} COP`,
         image: body.image,
-        images: body.images,
+        image2: body.image2 || null,
+        image3: body.image3 || null,
+        images: imagesArray,
         description: body.description,
-        sizes: body.sizes,
+        sizes: body.sizes || ["S", "M", "L"],
         category: body.category,
         is_featured: body.is_featured !== undefined ? body.is_featured : false,
         collection: body.collection || null,
