@@ -17,12 +17,14 @@ export async function PUT(request, { params }) {
     if (body.image3) imagesArray.push(body.image3);
 
     const updatedProduct = await prisma.product.update({
-      where: { id: parseInt(id) },
+      where: { id: parseInt(id, 10) },
       data: {
         title: body.title,
         slug: slug,
-        price: parseInt(body.price),
-        formatted_price: body.formatted_price || `$${parseInt(body.price).toLocaleString("es-CO")} COP`,
+        price: parseInt(body.price, 10),
+        formatted_price:
+          body.formatted_price ||
+          `$${parseInt(body.price, 10).toLocaleString("es-CO")} COP`,
         image: body.image,
         image2: body.image2 || null,
         image3: body.image3 || null,
@@ -46,12 +48,12 @@ export async function PUT(request, { params }) {
 }
 
 // DELETE /api/products/[id] - Eliminar producto
-export async function DELETE(request, { params }) {
+export async function DELETE(_request, { params }) {
   try {
     const { id } = params;
 
     await prisma.product.delete({
-      where: { id: parseInt(id) },
+      where: { id: parseInt(id, 10) },
     });
 
     return NextResponse.json({ message: "Producto eliminado" });

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { generateSlug } from "@/lib/utils";
+import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { generateSlug } from "@/lib/utils";
 
 function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
   const [title, setTitle] = useState("");
@@ -59,7 +60,9 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
     const finalSlug = generateSlug(slug);
 
     if (!title || !finalSlug || !price || !image) {
-      setError("Por favor, completa los campos requeridos: Título, Slug, Precio, Imagen Principal.");
+      setError(
+        "Por favor, completa los campos requeridos: Título, Slug, Precio, Imagen Principal.",
+      );
       setSlug(finalSlug);
       return;
     }
@@ -72,7 +75,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
     const productData = {
       title,
       slug: finalSlug,
-      price: parseInt(price),
+      price: parseInt(price, 10),
       image,
       image2: image2 || null,
       image3: image3 || null,
@@ -84,7 +87,9 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
     };
 
     try {
-      const url = isEditing ? `/api/products/${productToEdit.id}` : "/api/products";
+      const url = isEditing
+        ? `/api/products/${productToEdit.id}`
+        : "/api/products";
       const method = isEditing ? "PUT" : "POST";
 
       const response = await fetch(url, {
@@ -102,7 +107,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
       setSuccess(
         isEditing
           ? `¡Producto "${result.title}" actualizado!`
-          : `¡Producto "${result.title}" creado!`
+          : `¡Producto "${result.title}" creado!`,
       );
 
       onFormSubmit(result);
@@ -124,16 +129,28 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4 border rounded-lg bg-gray-50 mb-8">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 p-4 border rounded-lg bg-gray-50 mb-8"
+    >
       <h2 className="text-xl font-semibold">
-        {isEditing ? `Editando: ${productToEdit.title}` : "Crear Nuevo Producto"}
+        {isEditing
+          ? `Editando: ${productToEdit.title}`
+          : "Crear Nuevo Producto"}
       </h2>
-      {error && <div className="p-3 bg-red-100 text-red-700 rounded">{error}</div>}
-      {success && <div className="p-3 bg-green-100 text-green-700 rounded">{success}</div>}
+      {error && (
+        <div className="p-3 bg-red-100 text-red-700 rounded">{error}</div>
+      )}
+      {success && (
+        <div className="p-3 bg-green-100 text-green-700 rounded">{success}</div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="title"
+            className="block text-sm font-medium text-gray-700"
+          >
             Título *
           </label>
           <input
@@ -145,7 +162,10 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
           />
         </div>
         <div>
-          <label htmlFor="slug" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="slug"
+            className="block text-sm font-medium text-gray-700"
+          >
             Slug *
           </label>
           <input
@@ -158,7 +178,10 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
           />
         </div>
         <div>
-          <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="price"
+            className="block text-sm font-medium text-gray-700"
+          >
             Precio (en pesos) *
           </label>
           <input
@@ -170,7 +193,10 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
           />
         </div>
         <div>
-          <label htmlFor="collection" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="collection"
+            className="block text-sm font-medium text-gray-700"
+          >
             Colección (ej: Temporada 2025)
           </label>
           <input
@@ -190,13 +216,17 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
           Imágenes del Producto (Diferentes Colores)
         </h3>
         <p className="text-sm text-gray-500 mb-4">
-          Agrega hasta 3 imágenes del mismo producto en diferentes colores. Usa la misma perspectiva para todas.
+          Agrega hasta 3 imágenes del mismo producto en diferentes colores. Usa
+          la misma perspectiva para todas.
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Imagen 1 - Principal */}
           <div>
-            <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="image"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Imagen 1 (Principal) *
             </label>
             <input
@@ -209,14 +239,21 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
             />
             {image && (
               <div className="mt-2 relative w-full h-32 border rounded-md overflow-hidden bg-gray-100">
-                <img src={image} alt="Vista previa 1" className="w-full h-full object-cover" />
+                <Image
+                  src={image}
+                  alt="Vista previa 1"
+                  className="w-full h-full object-cover"
+                />
               </div>
             )}
           </div>
 
           {/* Imagen 2 */}
           <div>
-            <label htmlFor="image2" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="image2"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Imagen 2 (Color 2)
             </label>
             <input
@@ -229,14 +266,21 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
             />
             {image2 && (
               <div className="mt-2 relative w-full h-32 border rounded-md overflow-hidden bg-gray-100">
-                <img src={image2} alt="Vista previa 2" className="w-full h-full object-cover" />
+                <Image
+                  src={image2}
+                  alt="Vista previa 2"
+                  className="w-full h-full object-cover"
+                />
               </div>
             )}
           </div>
 
           {/* Imagen 3 */}
           <div>
-            <label htmlFor="image3" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="image3"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Imagen 3 (Color 3)
             </label>
             <input
@@ -244,12 +288,16 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
               id="image3"
               value={image3}
               onChange={(e) => setImage3(e.target.value)}
-              placeholder="/img/producto-color3.jpg"
+              placeholder="/ /producto-color3.jpg"
               className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
             {image3 && (
               <div className="mt-2 relative w-full h-32 border rounded-md overflow-hidden bg-gray-100">
-                <img src={image3} alt="Vista previa 3" className="w-full h-full object-cover" />
+                <Image
+                  src={image3}
+                  alt="Vista previa 3"
+                  className="w-full h-full object-cover"
+                />
               </div>
             )}
           </div>
@@ -264,13 +312,19 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
           onChange={(e) => setIsFeatured(e.target.checked)}
           className="h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
         />
-        <label htmlFor="isFeatured" className="ml-2 block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="isFeatured"
+          className="ml-2 block text-sm font-medium text-gray-700"
+        >
           Destacar en Colección
         </label>
       </div>
 
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="description"
+          className="block text-sm font-medium text-gray-700"
+        >
           Descripción
         </label>
         <textarea
@@ -310,27 +364,29 @@ export default function AdminProductsPage() {
   const [editingProduct, setEditingProduct] = useState(null);
   const [filterFeatured, setFilterFeatured] = useState("all");
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("/api/products");
-      if (!response.ok) throw new Error("Error fetching products");
-      const data = await response.json();
-      setProducts(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchProducts();
+    async function loadProducts() {
+      setLoading(true);
+      try {
+        const response = await fetch("/api/products");
+        if (!response.ok) throw new Error("Error fetching products");
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadProducts();
   }, []);
 
   const handleFormSubmit = (resultProduct) => {
     if (editingProduct) {
-      setProducts(products.map((p) => (p.id === resultProduct.id ? resultProduct : p)));
+      setProducts(
+        products.map((p) => (p.id === resultProduct.id ? resultProduct : p)),
+      );
     } else {
       setProducts((prevProducts) => [resultProduct, ...prevProducts]);
     }
@@ -338,9 +394,13 @@ export default function AdminProductsPage() {
   };
 
   const handleDelete = async (productId) => {
-    if (window.confirm("¿Estás seguro de que quieres eliminar este producto?")) {
+    if (
+      window.confirm("¿Estás seguro de que quieres eliminar este producto?")
+    ) {
       try {
-        const response = await fetch(`/api/products/${productId}`, { method: "DELETE" });
+        const response = await fetch(`/api/products/${productId}`, {
+          method: "DELETE",
+        });
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.error || "Error al eliminar el producto");
@@ -370,7 +430,9 @@ export default function AdminProductsPage() {
       if (!response.ok) throw new Error("Error al actualizar el producto");
 
       const updatedProduct = await response.json();
-      setProducts(products.map((p) => (p.id === updatedProduct.id ? updatedProduct : p)));
+      setProducts(
+        products.map((p) => (p.id === updatedProduct.id ? updatedProduct : p)),
+      );
     } catch (error) {
       console.error("Error:", error);
       alert("Error al actualizar el producto");
@@ -404,6 +466,7 @@ export default function AdminProductsPage() {
             </div>
           )}
           <button
+            type="button"
             onClick={handleLogout}
             className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
           >
@@ -424,7 +487,9 @@ export default function AdminProductsPage() {
         </div>
         <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
           <p className="text-sm text-purple-600 font-medium">Sin Destacar</p>
-          <p className="text-3xl font-bold text-purple-900">{products.length - featuredCount}</p>
+          <p className="text-3xl font-bold text-purple-900">
+            {products.length - featuredCount}
+          </p>
         </div>
       </div>
 
@@ -439,6 +504,7 @@ export default function AdminProductsPage() {
           <h2 className="text-xl font-semibold">Lista de Productos</h2>
           <div className="flex gap-2">
             <button
+              type="button"
               onClick={() => setFilterFeatured("all")}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 filterFeatured === "all"
@@ -449,6 +515,7 @@ export default function AdminProductsPage() {
               Todos ({products.length})
             </button>
             <button
+              type="button"
               onClick={() => setFilterFeatured("featured")}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 filterFeatured === "featured"
@@ -459,6 +526,7 @@ export default function AdminProductsPage() {
               En Colección ({featuredCount})
             </button>
             <button
+              type="button"
               onClick={() => setFilterFeatured("not-featured")}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 filterFeatured === "not-featured"
@@ -475,39 +543,67 @@ export default function AdminProductsPage() {
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead className="bg-gray-50">
               <tr>
-                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">ID</th>
-                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">Nombre</th>
-                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">Precio</th>
-                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">Imágenes</th>
-                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">Colección</th>
-                <th className="py-3 px-4 border-b text-center text-sm font-semibold text-gray-700">Destacado</th>
-                <th className="py-3 px-4 border-b text-center text-sm font-semibold text-gray-700">Acciones</th>
+                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                  ID
+                </th>
+                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                  Nombre
+                </th>
+                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                  Precio
+                </th>
+                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                  Imágenes
+                </th>
+                <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-700">
+                  Colección
+                </th>
+                <th className="py-3 px-4 border-b text-center text-sm font-semibold text-gray-700">
+                  Destacado
+                </th>
+                <th className="py-3 px-4 border-b text-center text-sm font-semibold text-gray-700">
+                  Acciones
+                </th>
               </tr>
             </thead>
             <tbody>
               {filteredProducts.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-50 transition-colors">
+                <tr
+                  key={product.id}
+                  className="hover:bg-gray-50 transition-colors"
+                >
                   <td className="py-3 px-4 border-b text-sm">{product.id}</td>
-                  <td className="py-3 px-4 border-b text-sm font-medium">{product.title}</td>
-                  <td className="py-3 px-4 border-b text-sm">{product.formatted_price}</td>
+                  <td className="py-3 px-4 border-b text-sm font-medium">
+                    {product.title}
+                  </td>
+                  <td className="py-3 px-4 border-b text-sm">
+                    {product.formatted_price}
+                  </td>
                   <td className="py-3 px-4 border-b text-sm">
                     <div className="flex gap-1">
-                      {product.image && <div className="w-8 h-8 bg-blue-500 rounded"></div>}
-                      {product.image2 && <div className="w-8 h-8 bg-green-500 rounded"></div>}
-                      {product.image3 && <div className="w-8 h-8 bg-purple-500 rounded"></div>}
+                      {product.image && (
+                        <div className="w-8 h-8 bg-blue-500 rounded"></div>
+                      )}
+                      {product.image2 && (
+                        <div className="w-8 h-8 bg-green-500 rounded"></div>
+                      )}
+                      {product.image3 && (
+                        <div className="w-8 h-8 bg-purple-500 rounded"></div>
+                      )}
                     </div>
                   </td>
                   <td className="py-3 px-4 border-b text-sm">
-                    {product.collection ? (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                        {product.collection}
-                      </span>
-                    ) : (
-                      <span className="text-gray-400 italic">Sin colección</span>
-                    )}
+                    {product.collection
+                      ? <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                          {product.collection}
+                        </span>
+                      : <span className="text-gray-400 italic">
+                          Sin colección
+                        </span>}
                   </td>
                   <td className="py-3 px-4 border-b text-center">
                     <button
+                      type="button"
                       onClick={() => toggleFeatured(product)}
                       className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                         product.is_featured
@@ -520,12 +616,14 @@ export default function AdminProductsPage() {
                   </td>
                   <td className="py-3 px-4 border-b text-center">
                     <button
+                      type="button"
                       onClick={() => handleEditClick(product)}
                       className="bg-blue-500 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 text-sm transition-colors"
                     >
                       Editar
                     </button>
                     <button
+                      type="button"
                       onClick={() => handleDelete(product.id)}
                       className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm transition-colors"
                     >
@@ -539,7 +637,9 @@ export default function AdminProductsPage() {
         </div>
 
         {filteredProducts.length === 0 && (
-          <div className="text-center py-8 text-gray-500">No hay productos en esta categoría</div>
+          <div className="text-center py-8 text-gray-500">
+            No hay productos en esta categoría
+          </div>
         )}
       </div>
     </div>

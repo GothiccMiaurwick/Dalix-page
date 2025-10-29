@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ControlsBar() {
   const [activeView, setActiveView] = useState("grid-2");
@@ -15,9 +15,11 @@ export default function ControlsBar() {
     window.dispatchEvent(new CustomEvent("viewChanged", { detail: { view } }));
   };
 
-  const checkIsMobile = () => {
-    return typeof window !== "undefined" && window.innerWidth < 768;
-  };
+  const checkIsMobile =
+    (() => {
+      return typeof window !== "undefined" && window.innerWidth < 768;
+    },
+    []);
 
   // Efecto para marcar que el componente está montado en el cliente
   useEffect(() => {
@@ -75,7 +77,7 @@ export default function ControlsBar() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [mounted, isMobile]);
+  }, [mounted, isMobile, checkIsMobile]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -134,6 +136,7 @@ export default function ControlsBar() {
           <div className="flex items-center gap-1 sm:gap-2 bg-gray-50 rounded-lg p-1">
             {/* Grid 2x2 */}
             <button
+              type="button"
               className={`w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-transparent flex items-center justify-center rounded-md hover:bg-gray-200 transition-all duration-200 cursor-pointer ${
                 activeView === "grid-2"
                   ? "bg-white shadow-sm opacity-100"
@@ -146,22 +149,31 @@ export default function ControlsBar() {
             >
               <div className="grid grid-cols-2 gap-0.5 sm:gap-1 w-4 h-4 sm:w-5 sm:h-5">
                 <div
-                  className={`w-full h-full rounded-sm ${activeView === "grid-2" ? "bg-gray-800" : "bg-gray-600"}`}
+                  className={`w-full h-full rounded-sm ${
+                    activeView === "grid-2" ? "bg-gray-800" : "bg-gray-600"
+                  }`}
                 ></div>
                 <div
-                  className={`w-full h-full rounded-sm ${activeView === "grid-2" ? "bg-gray-800" : "bg-gray-600"}`}
+                  className={`w-full h-full rounded-sm ${
+                    activeView === "grid-2" ? "bg-gray-800" : "bg-gray-600"
+                  }`}
                 ></div>
                 <div
-                  className={`w-full h-full rounded-sm ${activeView === "grid-2" ? "bg-gray-800" : "bg-gray-600"}`}
+                  className={`w-full h-full rounded-sm ${
+                    activeView === "grid-2" ? "bg-gray-800" : "bg-gray-600"
+                  }`}
                 ></div>
                 <div
-                  className={`w-full h-full rounded-sm ${activeView === "grid-2" ? "bg-gray-800" : "bg-gray-600"}`}
+                  className={`w-full h-full rounded-sm ${
+                    activeView === "grid-2" ? "bg-gray-800" : "bg-gray-600"
+                  }`}
                 ></div>
               </div>
             </button>
 
             {/* Grid 3x3 - Oculto en mobile */}
             <button
+              type="button"
               className={`w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-transparent items-center justify-center rounded-md hover:bg-gray-200 transition-all duration-200 cursor-pointer hidden md:flex ${
                 activeView === "grid-3"
                   ? "bg-white shadow-sm opacity-100"
@@ -175,8 +187,10 @@ export default function ControlsBar() {
               <div className="grid grid-cols-3 gap-0.5 sm:gap-1 w-4 h-4 sm:w-5 sm:h-5">
                 {[...Array(9)].map((_, i) => (
                   <div
-                    key={i}
-                    className={`w-full h-full rounded-sm ${activeView === "grid-3" ? "bg-gray-600" : "bg-gray-400"}`}
+                    key={`grid-3x3-cell-${i}`}
+                    className={`w-full h-full rounded-sm ${
+                      activeView === "grid-3" ? "bg-gray-600" : "bg-gray-400"
+                    }`}
                   ></div>
                 ))}
               </div>
@@ -184,6 +198,7 @@ export default function ControlsBar() {
 
             {/* Vista de lista */}
             <button
+              type="button"
               className={`w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-transparent flex items-center justify-center rounded-md hover:bg-gray-200 transition-all duration-200 cursor-pointer ${
                 activeView === "list"
                   ? "bg-white shadow-sm opacity-100"
@@ -196,13 +211,19 @@ export default function ControlsBar() {
             >
               <div className="flex flex-col gap-0.5 sm:gap-1 w-4 h-4 sm:w-5 sm:h-5">
                 <div
-                  className={`w-full h-1 rounded-sm ${activeView === "list" ? "bg-gray-600" : "bg-gray-400"}`}
+                  className={`w-full h-1 rounded-sm ${
+                    activeView === "list" ? "bg-gray-600" : "bg-gray-400"
+                  }`}
                 ></div>
                 <div
-                  className={`w-full h-1 rounded-sm ${activeView === "list" ? "bg-gray-600" : "bg-gray-400"}`}
+                  className={`w-full h-1 rounded-sm ${
+                    activeView === "list" ? "bg-gray-600" : "bg-gray-400"
+                  }`}
                 ></div>
                 <div
-                  className={`w-full h-1 rounded-sm ${activeView === "list" ? "bg-gray-600" : "bg-gray-400"}`}
+                  className={`w-full h-1 rounded-sm ${
+                    activeView === "list" ? "bg-gray-600" : "bg-gray-400"
+                  }`}
                 ></div>
               </div>
             </button>

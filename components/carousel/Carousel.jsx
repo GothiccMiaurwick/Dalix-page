@@ -1,15 +1,15 @@
 "use client";
 
-import React from "react";
 import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
+import React from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
   CarouselNext,
+  CarouselPrevious,
 } from "../ui/carousel";
-import Image from "next/image";
 
 export default function CarouselComponent() {
   const plugin = React.useRef(
@@ -28,16 +28,16 @@ export default function CarouselComponent() {
           className="w-full"
         >
           <CarouselContent className="-ml-2 sm:-ml-3 md:-ml-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
               <CarouselItem
-                key={index}
+                key={`carousel-${item}`}
                 className="pl-2 sm:pl-3 md:pl-4 basis-1/2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
               >
                 <div className="p-1">
                   <div className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                     <Image
                       src={`/img/RopaDalix${item}.jpg`}
-                      alt={`Imagen de carrusel ${index + 1}`}
+                      alt={`Imagen de carrusel ${item}`}
                       width={400}
                       height={600}
                       quality={75}

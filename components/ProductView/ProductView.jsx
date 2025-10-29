@@ -1,17 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function ProductView({ product }) {
-  if (!product) {
-    return null;
-  }
-
   const [mainImage, setMainImage] = useState(product.images[0]);
   const [activeSize, setActiveSize] = useState("M");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isZooming, setIsZooming] = useState(false);
+
+  if (!product) {
+    return null;
+  }
 
   const handleThumbnailClick = (image) => {
     setMainImage(image);
@@ -42,7 +42,9 @@ export default function ProductView({ product }) {
         {/* Columna de Imágenes */}
         <div className="flex flex-col gap-3 sm:gap-4">
           {/* Imagen principal con ZOOM */}
-          <div 
+          <button
+            role="button"
+            tabIndex={0}
             className="w-full aspect-square relative overflow-hidden rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-zoom-in"
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseEnter}
@@ -54,34 +56,41 @@ export default function ProductView({ product }) {
               fill
               className="object-cover transition-transform duration-300 ease-out"
               style={{
-                transform: isZooming ? `scale(1.5)` : 'scale(1)',
-                transformOrigin: `${mousePosition.x}% ${mousePosition.y}%`
+                transform: isZooming ? `scale(1.5)` : "scale(1)",
+                transformOrigin: `${mousePosition.x}% ${mousePosition.y}%`,
               }}
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
               priority
             />
-          </div>
+          </button>
 
           {/* Galería de miniaturas */}
           <div className="flex gap-2 sm:gap-3 md:gap-4 overflow-x-auto pb-2 scrollbar-hide">
-            {product.images.map((image, index) => (
-              <div
-                key={index}
+            {product.images.map((image) => (
+              <button
+                key={image}
+                role="button"
+                tabIndex={0}
                 className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex-shrink-0 cursor-pointer rounded-md overflow-hidden border-2 transition-all duration-200 hover:scale-105 ${
                   mainImage === image
                     ? "border-gray-800 shadow-md"
                     : "border-gray-300 hover:border-gray-500"
                 }`}
                 onClick={() => handleThumbnailClick(image)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleThumbnailClick(image);
+                  }
+                }}
               >
                 <Image
                   src={image}
-                  alt={`Vista ${index + 1}`}
+                  alt={`Vista  ${product.images.indexOf(image) + 1}`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 96px"
                 />
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -118,6 +127,7 @@ export default function ProductView({ product }) {
             <div className="flex flex-wrap gap-2 sm:gap-3">
               {product.sizes.map((size) => (
                 <button
+                  type="button"
                   key={size}
                   onClick={() => handleSizeClick(size)}
                   className={`px-5 py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5 border-2 rounded-lg font-medium text-sm sm:text-base md:text-lg transition-all duration-200 ${
@@ -189,7 +199,10 @@ export default function ProductView({ product }) {
 
           {/* Botones de Compra */}
           <div className="mt-6 sm:mt-8 flex flex-col gap-3 sm:gap-4 sticky bottom-4 sm:relative sm:bottom-0">
-            <button className="w-full flex items-center justify-center gap-3 px-6 py-3.5 sm:py-4 md:py-5 bg-[#25D366] text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg shadow-lg hover:bg-[#128C7E] active:scale-95 transition-all duration-300">
+            <button
+              type="button"
+              className="w-full flex items-center justify-center gap-3 px-6 py-3.5 sm:py-4 md:py-5 bg-[#25D366] text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg shadow-lg hover:bg-[#128C7E] active:scale-95 transition-all duration-300"
+            >
               <i className="fi fi-brands-whatsapp text-xl sm:text-2xl"></i>
               COMPRAR POR WHATSAPP
             </button>

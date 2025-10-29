@@ -1,11 +1,12 @@
-// app/catalogo/[slug]/error.jsx
 "use client";
 
-export default function Error({ error, reset }) {
+export default function ErrorBoundary({ reset }) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <h2>Algo salió mal</h2>
-      <button onClick={reset}>Intentar de nuevo</button>
+      <button type="button" onClick={reset}>
+        Intentar de nuevo
+      </button>
     </div>
   );
 }

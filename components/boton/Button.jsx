@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "../ui/boton";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
+import { Button } from "../ui/boton";
 
 export default function ButtonCard({ text, href }) {
   const buttonElement = (

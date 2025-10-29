@@ -1,6 +1,6 @@
 import "./globals.css";
-import Navbar from "../components/NavBar/Navbar.jsx";
 import Footer from "../components/footer/Footer";
+import Navbar from "../components/NavBar/Navbar.jsx";
 import SessionProvider from "../components/SessionProvider";
 
 export const metadata = {

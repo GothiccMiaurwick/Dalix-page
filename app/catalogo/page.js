@@ -1,9 +1,9 @@
 "use client";
 
-import ControlsBar from "../../components/ControlsBar/ControlsBar";
-import { useState, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import ControlsBar from "../../components/ControlsBar/ControlsBar";
 
 export default function Catalogo() {
   const [currentView, setCurrentView] = useState("grid-2");
@@ -112,6 +112,7 @@ export default function Catalogo() {
             Error: {error}
           </p>
           <button
+            type="button"
             onClick={() => window.location.reload()}
             className="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
           >

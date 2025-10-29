@@ -1,1 +1,1 @@
-export { default } from './ControlsBar';
+export { default } from "./ControlsBar";

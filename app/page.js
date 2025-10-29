@@ -1,6 +1,6 @@
-import ImageCard from "../components/ImageCard/ImageCard";
 import Button from "../components/boton/Button";
 import Carousel from "../components/carousel/Carousel";
+import ImageCard from "../components/ImageCard/ImageCard";
 
 export default function Home() {
   return (

@@ -58,10 +58,10 @@ export async function POST(request) {
       data: {
         title: body.title,
         slug: slug,
-        price: parseInt(body.price),
+        price: parseInt(body.price, 10),
         formatted_price:
           body.formatted_price ||
-          `$${parseInt(body.price).toLocaleString("es-CO")} COP`,
+          `$${parseInt(body.price, 10).toLocaleString("es-CO")} COP`,
         image: body.image,
         image2: body.image2 || null,
         image3: body.image3 || null,

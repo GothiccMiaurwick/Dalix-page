@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    qualities: [75, 90, 100], // Añadimos 90 a las calidades permitidas
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.icons8.com',
+      },
+    ],
+    qualities: [75, 90, 100],
   },
 };
 

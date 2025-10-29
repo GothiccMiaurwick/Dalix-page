@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function CollectionPage() {
   const [products, setProducts] = useState([]);
@@ -64,8 +64,10 @@ export default function CollectionPage() {
             Error: {error}
           </p>
           <button
+            type="button"
             onClick={() => window.location.reload()}
-            className="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+            className="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+          >
             Intentar de nuevo
           </button>
         </div>
@@ -109,7 +111,8 @@ export default function CollectionPage() {
               style={{
                 animation: `slideInUp 0.4s ease-out ${index * 0.05}s both`,
               }}
-              className="group h-full">
+              className="group h-full"
+            >
               {/* Tarjeta con altura completa y flex */}
               <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2 h-full flex flex-col">
                 {/* Image Container - Altura fija */}
@@ -142,7 +145,8 @@ export default function CollectionPage() {
                       WebkitBoxOrient: "vertical",
                       minHeight: "2.5em", // Reserva espacio para 2 líneas
                       lineHeight: "1.25em",
-                    }}>
+                    }}
+                  >
                     {product.title}
                   </h3>
 
@@ -179,7 +183,8 @@ export default function CollectionPage() {
             href="https://wa.me/57800000000"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-semibold text-base sm:text-lg rounded-lg hover:bg-[#128C7E] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-semibold text-base sm:text-lg rounded-lg hover:bg-[#128C7E] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+          >
             <i className="fi fi-brands-whatsapp text-2xl"></i>
             CONTACTAR POR WHATSAPP
           </a>

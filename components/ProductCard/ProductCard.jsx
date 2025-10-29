@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ProductCard({ 
-  title, 
-  price, 
-  image, 
+export default function ProductCard({
+  title,
+  price,
+  image,
   alt,
-  href = "/buys"
+  href = "/buys",
 }) {
   return (
     <div className="catalog__card w-full bg-transparent rounded-none shadow-none flex flex-col items-stretch p-0 m-0 transition-transform duration-200 hover:-translate-y-0.5">

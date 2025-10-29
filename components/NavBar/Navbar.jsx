@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 const NavbarComponent = () => {
   // Estados existentes
@@ -232,11 +232,15 @@ const NavbarComponent = () => {
           className="fixed inset-0 z-[9999] visible opacity-100"
         >
           {/* Overlay */}
-          <div
+          <button
+            type="button"
             id="menu-overlay"
             className={`absolute inset-0 bg-black/50 backdrop-blur-sm cursor-pointer ${isOverlayFading ? "animate-fade-out" : ""}`}
             onClick={closeMenu}
-          ></div>
+            aria-label="Cerrar menú"
+          >
+            {/* Sin contenido visible, solo overlay */}
+          </button>
 
           {/* Menu Content */}
           <div
@@ -399,7 +403,8 @@ const NavbarComponent = () => {
                 {!isSearching && searchResults.length > 0 && (
                   <div className="flex flex-col gap-2 md:gap-3">
                     {searchResults.map((product, index) => (
-                      <div
+                      <button
+                        type="button"
                         key={product.id}
                         onClick={() => handleProductClick(product.slug)}
                         style={{
@@ -425,7 +430,7 @@ const NavbarComponent = () => {
                           </p>
                         </div>
                         <i className="fi fi-rs-angle-right text-lg md:text-xl text-gray-400 transition-transform duration-200 group-hover:translate-x-1"></i>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 )}
