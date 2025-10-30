@@ -37,7 +37,7 @@ export default function CollectionPage() {
   }, []);
 
   const cleanImagePath = (path) => {
-    if (!path) return "/img/placeholder.jpg";
+    if (!path) return "/img/placeholder.webp";
     return path.replace(/\s+/g, "").startsWith("/")
       ? path.replace(/\s+/g, "")
       : `/${path.replace(/\s+/g, "")}`;
@@ -47,7 +47,7 @@ export default function CollectionPage() {
     return (
       <div className="flex items-center justify-center min-h-screen px-4">
         <div className="text-center">
-          <div className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin mx-auto mb-4" />
           <p className="text-base sm:text-lg md:text-xl text-gray-600">
             Cargando colección...
           </p>
@@ -77,9 +77,21 @@ export default function CollectionPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
+      {/* Hero Section - OPTIMIZADO */}
       <section className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/img/RopaDalix1.jpg')] bg-cover bg-center opacity-20"></div>
+        {/* Imagen de fondo optimizada */}
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="/img/RopaDalix1.webp"
+            alt="Background pattern"
+            fill
+            className="object-cover"
+            quality={60}
+            priority
+            sizes="100vw"
+          />
+        </div>
+        
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8">
           <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-4 sm:mb-6 font-serif italic">
             Nueva Colección
@@ -102,7 +114,7 @@ export default function CollectionPage() {
           </p>
         </div>
 
-        {/* Grid - ALTURA UNIFORME */}
+        {/* Grid - OPTIMIZADO */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {products.map((product, index) => (
             <Link
@@ -115,18 +127,22 @@ export default function CollectionPage() {
             >
               {/* Tarjeta con altura completa y flex */}
               <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2 h-full flex flex-col">
-                {/* Image Container - Altura fija */}
+                {/* Image Container - OPTIMIZADO */}
                 <div className="relative aspect-square overflow-hidden bg-gray-100 flex-shrink-0">
                   <Image
                     src={cleanImagePath(product.image)}
                     alt={product.title}
                     fill
+                    quality={75}
+                    loading={index < 8 ? "eager" : "lazy"}
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                     sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAQAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFBv/EACQQAAEDAwMEAwAAAAAAAAAAAAECAwQABREGEiExE0FRYRQVcf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERAv/aAAwDAQACEQMRAD8A1tp0dZbTZk2y1WmBbYKFqiNGaS0kqUSTwkAcmpb3h2AqVMuC7PGdlukGQ6pCCVnJJz7pJ5xS/t7t/F/dTLrpW"
                   />
 
                   {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
 
                   {/* Badge "Nuevo" */}
                   <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-red-500 text-white text-xs sm:text-sm font-bold px-2 py-1 rounded-full">
@@ -143,7 +159,7 @@ export default function CollectionPage() {
                       display: "-webkit-box",
                       WebkitLineClamp: 2,
                       WebkitBoxOrient: "vertical",
-                      minHeight: "2.5em", // Reserva espacio para 2 líneas
+                      minHeight: "2.5em",
                       lineHeight: "1.25em",
                     }}
                   >
@@ -162,7 +178,7 @@ export default function CollectionPage() {
 
         {products.length === 0 && !loading && (
           <div className="text-center py-16 sm:py-20 md:py-24">
-            <i className="fi fi-rs-box text-5xl sm:text-6xl md:text-7xl text-gray-300 mb-6"></i>
+            <i className="fi fi-rs-box text-5xl sm:text-6xl md:text-7xl text-gray-300 mb-6" />
             <p className="text-lg sm:text-xl md:text-2xl text-gray-500">
               Aún no hay productos en esta colección
             </p>
@@ -185,7 +201,7 @@ export default function CollectionPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-semibold text-base sm:text-lg rounded-lg hover:bg-[#128C7E] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
-            <i className="fi fi-brands-whatsapp text-2xl"></i>
+            <i className="fi fi-brands-whatsapp text-2xl" />
             CONTACTAR POR WHATSAPP
           </a>
         </div>

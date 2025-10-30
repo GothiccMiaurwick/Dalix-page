@@ -4,17 +4,19 @@ export default function ImageCard() {
   return (
     <div className="relative w-full h-[60vh] min-h-[400px] sm:h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden">
       <Image
-        src="/img/RopaDalix11.jpg"
-        alt="Dalix Fashion Hero"
+        src="/img/RopaDalix11.webp"
+        alt="Dalix Fashion Hero - Más que ropa, es una historia que vistes"
         fill
-        quality={100}
-        className="w-full h-full object-cover object-center"
+        quality={85}
+        className="object-cover object-center"
         priority
         sizes="100vw"
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
       />
 
       {/* Overlay gradient for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/20 sm:from-black/60 sm:via-black/40 sm:to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/20 sm:from-black/60 sm:via-black/40 sm:to-transparent" />
 
       {/* Text overlay */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 sm:px-6 md:px-8 lg:px-12">

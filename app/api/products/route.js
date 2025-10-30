@@ -2,6 +2,14 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { generateSlug } from "@/lib/utils";
 
+// Función helper para convertir rutas de imagen a WebP
+function convertToWebP(imagePath) {
+  if (!imagePath) return null;
+  return imagePath
+    .replace(/\.jpe?g$/i, '.webp')  // .jpg o .jpeg → .webp
+    .replace(/\.png$/i, '.webp');    // .png → .webp
+}
+
 // GET /api/products - Obtener todos los productos
 export async function GET() {
   try {
@@ -15,7 +23,16 @@ export async function GET() {
 
     console.log(`[API] ${products.length} productos encontrados`);
 
-    return NextResponse.json(products);
+    // 🚀 OPTIMIZACIÓN: Convertir todas las imágenes a WebP
+    const productsWithWebP = products.map(product => ({
+      ...product,
+      image: convertToWebP(product.image),
+      image2: convertToWebP(product.image2),
+      image3: convertToWebP(product.image3),
+      images: product.images?.map(img => convertToWebP(img)) || [],
+    }));
+
+    return NextResponse.json(productsWithWebP);
   } catch (error) {
     console.error("[API] Error completo:", error);
     console.error("[API] Mensaje:", error.message);
@@ -48,10 +65,15 @@ export async function POST(request) {
     // Generar el slug a partir del título
     const slug = generateSlug(body.slug || body.title);
 
+    // 🚀 OPTIMIZACIÓN: Convertir imágenes a WebP antes de guardar
+    const imageWebP = convertToWebP(body.image);
+    const image2WebP = body.image2 ? convertToWebP(body.image2) : null;
+    const image3WebP = body.image3 ? convertToWebP(body.image3) : null;
+
     // Crear array de imágenes (incluye todas las variantes)
-    const imagesArray = [body.image];
-    if (body.image2) imagesArray.push(body.image2);
-    if (body.image3) imagesArray.push(body.image3);
+    const imagesArray = [imageWebP];
+    if (image2WebP) imagesArray.push(image2WebP);
+    if (image3WebP) imagesArray.push(image3WebP);
 
     // Crear producto en la DB
     const newProduct = await prisma.product.create({
@@ -62,9 +84,9 @@ export async function POST(request) {
         formatted_price:
           body.formatted_price ||
           `$${parseInt(body.price, 10).toLocaleString("es-CO")} COP`,
-        image: body.image,
-        image2: body.image2 || null,
-        image3: body.image3 || null,
+        image: imageWebP,
+        image2: image2WebP,
+        image3: image3WebP,
         images: imagesArray,
         description: body.description || "",
         sizes: body.sizes || ["S", "M", "L"],

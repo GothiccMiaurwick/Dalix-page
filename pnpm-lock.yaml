@@ -54,6 +54,9 @@ importers:
       prisma:
         specifier: ^6.17.1
         version: 6.17.1
+      sharp:
+        specifier: ^0.34.4
+        version: 0.34.4
       tailwindcss:
         specifier: ^4
         version: 4.1.14
@@ -898,8 +901,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@img/colour@1.0.0':
-    optional: true
+  '@img/colour@1.0.0': {}
 
   '@img/sharp-darwin-arm64@0.34.4':
     optionalDependencies:
@@ -1445,8 +1447,7 @@ snapshots:
 
   scheduler@0.26.0: {}
 
-  semver@7.7.3:
-    optional: true
+  semver@7.7.3: {}
 
   sharp@0.34.4:
     dependencies:
@@ -1476,7 +1477,6 @@ snapshots:
       '@img/sharp-win32-arm64': 0.34.4
       '@img/sharp-win32-ia32': 0.34.4
       '@img/sharp-win32-x64': 0.34.4
-    optional: true
 
   source-map-js@1.2.1: {}
 

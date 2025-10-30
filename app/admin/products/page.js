@@ -61,7 +61,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
 
     if (!title || !finalSlug || !price || !image) {
       setError(
-        "Por favor, completa los campos requeridos: Título, Slug, Precio, Imagen Principal.",
+        "Por favor, completa los campos requeridos: Título, Slug, Precio, Imagen Principal."
       );
       setSlug(finalSlug);
       return;
@@ -107,7 +107,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
       setSuccess(
         isEditing
           ? `¡Producto "${result.title}" actualizado!`
-          : `¡Producto "${result.title}" creado!`,
+          : `¡Producto "${result.title}" creado!`
       );
 
       onFormSubmit(result);
@@ -131,8 +131,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 p-4 border rounded-lg bg-gray-50 mb-8"
-    >
+      className="space-y-4 p-4 border rounded-lg bg-gray-50 mb-8">
       <h2 className="text-xl font-semibold">
         {isEditing
           ? `Editando: ${productToEdit.title}`
@@ -149,8 +148,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
         <div>
           <label
             htmlFor="title"
-            className="block text-sm font-medium text-gray-700"
-          >
+            className="block text-sm font-medium text-gray-700">
             Título *
           </label>
           <input
@@ -164,8 +162,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
         <div>
           <label
             htmlFor="slug"
-            className="block text-sm font-medium text-gray-700"
-          >
+            className="block text-sm font-medium text-gray-700">
             Slug *
           </label>
           <input
@@ -180,8 +177,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
         <div>
           <label
             htmlFor="price"
-            className="block text-sm font-medium text-gray-700"
-          >
+            className="block text-sm font-medium text-gray-700">
             Precio (en pesos) *
           </label>
           <input
@@ -195,8 +191,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
         <div>
           <label
             htmlFor="collection"
-            className="block text-sm font-medium text-gray-700"
-          >
+            className="block text-sm font-medium text-gray-700">
             Colección (ej: Temporada 2025)
           </label>
           <input
@@ -225,8 +220,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
           <div>
             <label
               htmlFor="image"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+              className="block text-sm font-medium text-gray-700 mb-1">
               Imagen 1 (Principal) *
             </label>
             <input
@@ -240,6 +234,8 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
             {image && (
               <div className="mt-2 relative w-full h-32 border rounded-md overflow-hidden bg-gray-100">
                 <Image
+                  width={200}
+                  height={100}
                   src={image}
                   alt="Vista previa 1"
                   className="w-full h-full object-cover"
@@ -252,8 +248,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
           <div>
             <label
               htmlFor="image2"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+              className="block text-sm font-medium text-gray-700 mb-1">
               Imagen 2 (Color 2)
             </label>
             <input
@@ -267,6 +262,8 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
             {image2 && (
               <div className="mt-2 relative w-full h-32 border rounded-md overflow-hidden bg-gray-100">
                 <Image
+                  width={200}
+                  height={100}
                   src={image2}
                   alt="Vista previa 2"
                   className="w-full h-full object-cover"
@@ -279,8 +276,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
           <div>
             <label
               htmlFor="image3"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+              className="block text-sm font-medium text-gray-700 mb-1">
               Imagen 3 (Color 3)
             </label>
             <input
@@ -294,6 +290,8 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
             {image3 && (
               <div className="mt-2 relative w-full h-32 border rounded-md overflow-hidden bg-gray-100">
                 <Image
+                  width={200}
+                  height={100}
                   src={image3}
                   alt="Vista previa 3"
                   className="w-full h-full object-cover"
@@ -314,8 +312,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
         />
         <label
           htmlFor="isFeatured"
-          className="ml-2 block text-sm font-medium text-gray-700"
-        >
+          className="ml-2 block text-sm font-medium text-gray-700">
           Destacar en Colección
         </label>
       </div>
@@ -323,8 +320,7 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
       <div>
         <label
           htmlFor="description"
-          className="block text-sm font-medium text-gray-700"
-        >
+          className="block text-sm font-medium text-gray-700">
           Descripción
         </label>
         <textarea
@@ -332,23 +328,20 @@ function ProductForm({ productToEdit, onFormSubmit, onCancelEdit }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows="3"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-        ></textarea>
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
       </div>
 
       <div className="flex items-center space-x-4">
         <button
           type="submit"
-          className="px-4 py-2 bg-cyan-600 text-white rounded-md hover:bg-cyan-700"
-        >
+          className="px-4 py-2 bg-cyan-600 text-white rounded-md hover:bg-cyan-700">
           {isEditing ? "Actualizar Producto" : "Crear Producto"}
         </button>
         {isEditing && (
           <button
             type="button"
             onClick={onCancelEdit}
-            className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
-          >
+            className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">
             Cancelar
           </button>
         )}
@@ -385,7 +378,7 @@ export default function AdminProductsPage() {
   const handleFormSubmit = (resultProduct) => {
     if (editingProduct) {
       setProducts(
-        products.map((p) => (p.id === resultProduct.id ? resultProduct : p)),
+        products.map((p) => (p.id === resultProduct.id ? resultProduct : p))
       );
     } else {
       setProducts((prevProducts) => [resultProduct, ...prevProducts]);
@@ -431,7 +424,7 @@ export default function AdminProductsPage() {
 
       const updatedProduct = await response.json();
       setProducts(
-        products.map((p) => (p.id === updatedProduct.id ? updatedProduct : p)),
+        products.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
       );
     } catch (error) {
       console.error("Error:", error);
@@ -468,8 +461,7 @@ export default function AdminProductsPage() {
           <button
             type="button"
             onClick={handleLogout}
-            className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-          >
+            className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
             <i className="fi fi-rs-sign-out-alt"></i>
             Cerrar Sesión
           </button>
@@ -510,8 +502,7 @@ export default function AdminProductsPage() {
                 filterFeatured === "all"
                   ? "bg-cyan-600 text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
+              }`}>
               Todos ({products.length})
             </button>
             <button
@@ -521,8 +512,7 @@ export default function AdminProductsPage() {
                 filterFeatured === "featured"
                   ? "bg-green-600 text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
+              }`}>
               En Colección ({featuredCount})
             </button>
             <button
@@ -532,8 +522,7 @@ export default function AdminProductsPage() {
                 filterFeatured === "not-featured"
                   ? "bg-orange-600 text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
+              }`}>
               Sin Destacar ({products.length - featuredCount})
             </button>
           </div>
@@ -570,8 +559,7 @@ export default function AdminProductsPage() {
               {filteredProducts.map((product) => (
                 <tr
                   key={product.id}
-                  className="hover:bg-gray-50 transition-colors"
-                >
+                  className="hover:bg-gray-50 transition-colors">
                   <td className="py-3 px-4 border-b text-sm">{product.id}</td>
                   <td className="py-3 px-4 border-b text-sm font-medium">
                     {product.title}
@@ -593,13 +581,15 @@ export default function AdminProductsPage() {
                     </div>
                   </td>
                   <td className="py-3 px-4 border-b text-sm">
-                    {product.collection
-                      ? <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                          {product.collection}
-                        </span>
-                      : <span className="text-gray-400 italic">
-                          Sin colección
-                        </span>}
+                    {product.collection ? (
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                        {product.collection}
+                      </span>
+                    ) : (
+                      <span className="text-gray-400 italic">
+                        Sin colección
+                      </span>
+                    )}
                   </td>
                   <td className="py-3 px-4 border-b text-center">
                     <button
@@ -609,8 +599,7 @@ export default function AdminProductsPage() {
                         product.is_featured
                           ? "bg-green-100 text-green-800 hover:bg-green-200"
                           : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                      }`}
-                    >
+                      }`}>
                       {product.is_featured ? "Sí" : "No"}
                     </button>
                   </td>
@@ -618,15 +607,13 @@ export default function AdminProductsPage() {
                     <button
                       type="button"
                       onClick={() => handleEditClick(product)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 text-sm transition-colors"
-                    >
+                      className="bg-blue-500 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 text-sm transition-colors">
                       Editar
                     </button>
                     <button
                       type="button"
                       onClick={() => handleDelete(product.id)}
-                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm transition-colors"
-                    >
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm transition-colors">
                       Eliminar
                     </button>
                   </td>
